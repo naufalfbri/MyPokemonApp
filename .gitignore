@@ -46,3 +46,11 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# File rahasia & konfigurasi API
+.env
+*.env
+**/google-services.json
+**/GoogleService-Info.plist
+lib/firebase_options.dart
+s
