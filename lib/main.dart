@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_pokemon_app/data/pokemon_data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,15 +30,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Video 2: Variabel List untuk menampung nama-nama Pokemon
-  List<String> pokemonList = [
-    'Pikachu',
-    'Charmander',
-    'Bulbasaur',
-    'Squirtle',
-    'Eevee',
-  ];
-
   @override
   Widget build(BuildContext context) {
     // Video 1: Menyiapkan layout halaman utama
@@ -60,10 +52,43 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 12),
-            // Menampilkan isi List
-            Text(
-              pokemonList.join(', '),
-              style: const TextStyle(fontSize: 16),
+            Expanded(
+              child: ListView.builder(
+                itemCount: pokemonList.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.red.shade50,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          padding: const EdgeInsets.only(right: 12),
+                          child: Image.asset(
+                            pokemonList[index].image,
+                            width: 72,
+                            height: 72,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            pokemonList[index].name,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
